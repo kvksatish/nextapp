@@ -3,6 +3,13 @@ const bcrypt = require('bcrypt');
 import  UserModel  from "../../../Models/User";
 import connectDB from "../../../Middleware/mongoose";
 
+const cors = require('cors');
+
+const corsOptions = {
+  origin: 'https://nextapp-o1zrqv7k2-kvksatish.vercel.app',
+  optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+}
+
 const handler: NextApiHandler = async (req: NextApiRequest, res: NextApiResponse) => {
     //console.log(req.body)
     let { email, password, name } = req.body
@@ -51,4 +58,4 @@ const validatePassword = (password: string): boolean => {
     return re.test(password);
 }
 
-export default connectDB(handler);
+export default cors(corsOptions)(connectDB(handler));
