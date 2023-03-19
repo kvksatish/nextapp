@@ -23,13 +23,13 @@ const handler: NextApiHandler = async (req: NextApiRequest, res: NextApiResponse
         return;
     }
 
-    bcrypt.hash(password, 6).then(async function (hash) {
+    bcrypt.hash(password, 6).then(async function (hash:any) {
         console.log(hash)
         const user = new UserModel({ email, password: hash, name })
         await user.save()
 
         res.send("Signup Successfull")
-    }).catch((err) => {
+    }).catch((err:any) => {
         if (err) {
             console.log(err)
             res.json({ message: 'Something went wrong, please try again later' });

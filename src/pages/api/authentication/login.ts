@@ -7,9 +7,9 @@ import connectDB from "../../../Middleware/mongoose";
 const handler: NextApiHandler = async (req: NextApiRequest, res: NextApiResponse) => {
 let { email, password } = req.body;
 let user = await UserModel.findOne({ email });
-let hash = user.password;
+let hash = user?.password;
 
-bcrypt.compare(password, hash, function (err, result) {
+bcrypt.compare(password, hash, function (err:any, result:any) {
 if (result) {
 let token = jwt.sign({ email }, 'secret');
 console.log(token);

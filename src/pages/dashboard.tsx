@@ -1,4 +1,5 @@
-import withAuth from '../components/withAuth';
+import withAuth from "@/Components/withauth";
+
 
 function Dashboard() {
   return <h1>Dashboard</h1>;

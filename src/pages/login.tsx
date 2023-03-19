@@ -15,7 +15,7 @@ interface SignupFormValues extends LoginFormValues {
 const LoginPage: React.FC = () => {
   const router = useRouter();
 
-  function dashboard(token) {
+  function dashboard(token:string) {
     axios.post("http://localhost:3000/api/authentication/dashboard", {}, {
       headers: {
         Authorization: `Bearer ${token}`,
@@ -72,7 +72,7 @@ const LoginPage: React.FC = () => {
           setError('Please provide valid email address and password');
         }
       }
-    } catch (error) {
+    } catch (error:any) {
       setError(error.message);
     }
   };
