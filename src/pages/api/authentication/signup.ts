@@ -5,11 +5,6 @@ import connectDB from "../../../Middleware/mongoose";
 import cors from '../../../Middleware/cors'
 
 
-const corsOptions = {
-  origin: '*',
-  optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
-}
-
 const handler: NextApiHandler = async (req: NextApiRequest, res: NextApiResponse) => {
     cors(req,res)
     //console.log(req.body)
@@ -59,4 +54,4 @@ const validatePassword = (password: string): boolean => {
     return re.test(password);
 }
 
-export default cors(corsOptions)(connectDB(handler));
+export default connectDB(handler);
