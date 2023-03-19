@@ -6,7 +6,7 @@ import connectDB from "../../../Middleware/mongoose";
 const cors = require('cors');
 
 const corsOptions = {
-  origin: 'https://nextapp-o1zrqv7k2-kvksatish.vercel.app',
+  origin: '*',
   optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
 }
 
