@@ -15,16 +15,14 @@ interface SignupFormValues extends LoginFormValues {
 const LoginPage: React.FC = () => {
   const router = useRouter();
 
-
-  const [token, settoken] = useState("")
-
-  function dashboard() {
+  function dashboard(token) {
     axios.post("http://localhost:3000/api/authentication/dashboard", {}, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
     }).then((res) => {
-      console.log(res, "fsytf");
+      localStorage.setItem('token', token);
+      router.push("/dashboard");
     });
   }
   
@@ -51,7 +49,8 @@ const LoginPage: React.FC = () => {
           // Here, you could add logic to create a user and send a verification email
 
           axios.post('http://localhost:3000/api/authentication/signup', { email, password, name: "hgvhyvju" }).then((res) => {
-              console.log(res,"siginup")
+            console.log(res, "siginup")
+            alert("success")
             })
             
        //   router.push('/dashboard');
@@ -64,7 +63,8 @@ const LoginPage: React.FC = () => {
           
           axios.post('http://localhost:3000/api/authentication/login', { email, password}).then((res) => {
             console.log(res.data.token, "login")
-            settoken(res.data.token)
+            //settoken()
+            dashboard(res.data.token)
           })
             
           //  router.push('/dashboard');
@@ -78,15 +78,14 @@ const LoginPage: React.FC = () => {
   };
 
     return (
-        <div style={{ backgroundColor: "red" }} className="container mx-auto">
+        <div style={{ backgroundColor: "red",width:"50%",margin:"auto",marginTop:"4rem",padding:"4rem" }} className="container mx-auto">
   <div className="flex justify-center">
     <div className="w-1/2">
             <h1 className="mb-4 text-2xl">{isSignup ? 'Sign up' : 'Login'}</h1>
-
-<button onClick={()=>dashboard()} >dashboard</button>            
+          
 
       <form onSubmit={handleFormSubmit}>
-        <div className="form-group">
+        <div  className="form-group">
           <label htmlFor="email" className="block font-medium text-gray-700">Email</label>
           <input
             id="email"
