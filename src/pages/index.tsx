@@ -15,6 +15,14 @@ interface SignupFormValues extends LoginFormValues {
 const LoginPage: React.FC = () => {
   const router = useRouter();
 
+
+
+
+  function test() {
+    axios.post("https://nextapp-o1zrqv7k2-kvksatish.vercel.app/api/authentication/dashboard").then((res) => {
+      console.log(res)
+    });
+  }
   function dashboard(token:string) {
     axios.post("https://nextapp-o1zrqv7k2-kvksatish.vercel.app/api/authentication/dashboard", {}, {
       headers: {
@@ -42,6 +50,8 @@ const LoginPage: React.FC = () => {
   const handleFormSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setError('');
+
+
 
     try {
       if (isSignup) {
@@ -82,7 +92,7 @@ const LoginPage: React.FC = () => {
   <div className="flex justify-center">
     <div className="w-1/2">
             <h1 className="mb-4 text-2xl">{isSignup ? 'Sign up' : 'Login'}</h1>
-          
+          <button onClick={()=>test()} >TESTST</button>
 
       <form onSubmit={handleFormSubmit}>
         <div  className="form-group">
