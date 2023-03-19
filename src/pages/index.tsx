@@ -51,7 +51,7 @@ const LoginPage: React.FC = () => {
           axios.post('https://nextapp-o1zrqv7k2-kvksatish.vercel.app/api/authentication/signup', { email, password, name: "hgvhyvju" }).then((res) => {
             console.log(res, "siginup")
             alert("success")
-            })
+            }).catch(()=>alert("Invalid credentials"))
             
        //   router.push('/dashboard');
         } else {
@@ -65,7 +65,7 @@ const LoginPage: React.FC = () => {
             console.log(res.data.token, "login")
             //settoken()
             dashboard(res.data.token)
-          })
+          }).catch(()=>alert("Invalid credentials"))
             
           //  router.push('/dashboard');
         } else {
