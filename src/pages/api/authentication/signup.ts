@@ -2,8 +2,8 @@ import { NextApiHandler, NextApiRequest, NextApiResponse } from "next";
 const bcrypt = require('bcrypt');
 import  UserModel  from "../../../Models/User";
 import connectDB from "../../../Middleware/mongoose";
+import cors from '../../../Middleware/cors'
 
-const cors = require('cors');
 
 const corsOptions = {
   origin: '*',
@@ -11,6 +11,7 @@ const corsOptions = {
 }
 
 const handler: NextApiHandler = async (req: NextApiRequest, res: NextApiResponse) => {
+    cors(req,res)
     //console.log(req.body)
     let { email, password, name } = req.body
 
